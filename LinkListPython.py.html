@@ -1,0 +1,96 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[24]:
+
+
+class node:
+    def __init__(self,data=None):
+        self.data=data
+        self.next=None
+class LinkList:
+    def __init__(self):
+        self.head=None
+    def printlist(self):
+        e=self.head
+        while e is not None:
+            print(e.data)
+            e=e.next
+    def insert_at_first(self,val):
+        newnode=node(val)
+        newnode.next=self.head
+        self.head=newnode
+    def insert_at_last(self,val):
+        newnode=node(val)
+        newnode.next=None
+        if self.head==None:
+            self.head=newnode
+            return
+        new=self.head
+        while(new.next):
+            new=new.next
+        new.next=newnode
+    def inbetween(self,middle_node,val):
+        if(middle_node==None):
+            return "The mention node is abset"
+        newnode=node(val)
+        newnode.next=middle_node.next
+        middle_node.next=newnode
+    def remove_element(self,remove_val):
+        head_val=self.head
+        if(head_val is not None):
+            if(head_val.data==remove_val):
+                self.head=head_val.next
+                head_val=None
+                return
+        while(head_val is not None):
+            if(head_val.data==remove_val):
+                break
+            prev=head_val
+            head_val=head_val.next
+        if(head_val is None):
+            return
+        prev.next=head_val.next
+        head_val=None
+        
+    def remove_duplicate(self):
+        cur=sec=self.head
+        while(cur is not None):
+            while(sec.next is not None):
+                if(sec.next.data==cur.data):
+                    sec.next=sec.next.next
+                else:
+                    sec=sec.next
+            cur=sec=cur.next
+                
+        
+l1=LinkList()
+l1.head=node("Mon")
+e2=node("tue")
+
+e3=node("wed")
+e4=node("Mon")
+l1.head.next=e2
+e2.next=e3
+e3.next=e4
+
+#print(l1.printlist())
+l1.insert_at_first("ko")
+l1.insert_at_last("kgh")
+
+l1.remove_element("tue")
+l1.remove_duplicate()
+print(l1.printlist())
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
